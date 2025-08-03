@@ -1,0 +1,23 @@
+
+es: ImageIO.read(getClass().getResourceAsStream("........"))
+
+getClass().getResourceAsStream(...) -->
+    Serve per aprire un file interno al progetto (nella cartella res o resources)
+    Ti restituisce uno stream di dati, come un "tubo" per leggere il contenuto del file.
+
+ImageIO.read(...)
+    Serve per leggere l’immagine da quello stream e trasformarla in una vera immagine (BufferedImage) che puoi usare nel gioco.
+
+------------------------------------------------------------------------------------------------------------------------------
+
+раткая схема работы:
+
+Main → создаёт GamePanel → вызывает startGameThread()
+   ↓
+GamePanel запускает run() в отдельном потоке
+   ↓
+Каждый кадр:
+  • вызывает update() → player.update()
+  • вызывает repaint() → paintComponent() → player.draw()
+   ↓
+Player проверяет нажатия клавиш и двигается
